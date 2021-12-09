@@ -1,0 +1,23 @@
+.header {
+  background: #888;
+  display: flex;
+  height: 80px;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 30px;
+}
+
+.items {
+  margin-right: 30px;
+  text-transform: capitalize;
+  font-size: 24px;
+  transition: .5s all;
+
+  &:hover {
+    color: #2fff7b;
+  }
+}
+
+.active {
+  color: #2fff7b
+}
