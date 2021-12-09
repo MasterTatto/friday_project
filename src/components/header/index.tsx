@@ -6,7 +6,7 @@ import {combineCss} from "../../helpers/combineCss";
 
 type HeaderTypeProps = {
     links: string[]
-    setUrl: any
+    setUrl: (string: string) => void
     url: string
 }
 
