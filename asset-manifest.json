@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/friday_project/static/css/main.4d9668bd.chunk.css",
-    "main.js": "/friday_project/static/js/main.60069558.chunk.js",
-    "main.js.map": "/friday_project/static/js/main.60069558.chunk.js.map",
-    "runtime-main.js": "/friday_project/static/js/runtime-main.9daf1b79.js",
-    "runtime-main.js.map": "/friday_project/static/js/runtime-main.9daf1b79.js.map",
-    "static/js/2.0602f93d.chunk.js": "/friday_project/static/js/2.0602f93d.chunk.js",
-    "static/js/2.0602f93d.chunk.js.map": "/friday_project/static/js/2.0602f93d.chunk.js.map",
-    "static/js/3.fe436d23.chunk.js": "/friday_project/static/js/3.fe436d23.chunk.js",
-    "static/js/3.fe436d23.chunk.js.map": "/friday_project/static/js/3.fe436d23.chunk.js.map",
+    "main.css": "/friday_project/static/css/main.67227c86.chunk.css",
+    "main.js": "/friday_project/static/js/main.d7a9a242.chunk.js",
+    "main.js.map": "/friday_project/static/js/main.d7a9a242.chunk.js.map",
+    "runtime-main.js": "/friday_project/static/js/runtime-main.9fdc6386.js",
+    "runtime-main.js.map": "/friday_project/static/js/runtime-main.9fdc6386.js.map",
+    "static/js/2.31626756.chunk.js": "/friday_project/static/js/2.31626756.chunk.js",
+    "static/js/2.31626756.chunk.js.map": "/friday_project/static/js/2.31626756.chunk.js.map",
+    "static/js/3.b4341a61.chunk.js": "/friday_project/static/js/3.b4341a61.chunk.js",
+    "static/js/3.b4341a61.chunk.js.map": "/friday_project/static/js/3.b4341a61.chunk.js.map",
     "index.html": "/friday_project/index.html",
-    "static/css/main.4d9668bd.chunk.css.map": "/friday_project/static/css/main.4d9668bd.chunk.css.map",
-    "static/js/2.0602f93d.chunk.js.LICENSE.txt": "/friday_project/static/js/2.0602f93d.chunk.js.LICENSE.txt",
+    "static/css/main.67227c86.chunk.css.map": "/friday_project/static/css/main.67227c86.chunk.css.map",
+    "static/js/2.31626756.chunk.js.LICENSE.txt": "/friday_project/static/js/2.31626756.chunk.js.LICENSE.txt",
     "static/media/added.8e1740a7.svg": "/friday_project/static/media/added.8e1740a7.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.9daf1b79.js",
-    "static/js/2.0602f93d.chunk.js",
-    "static/css/main.4d9668bd.chunk.css",
-    "static/js/main.60069558.chunk.js"
+    "static/js/runtime-main.9fdc6386.js",
+    "static/js/2.31626756.chunk.js",
+    "static/css/main.67227c86.chunk.css",
+    "static/js/main.d7a9a242.chunk.js"
   ]
 }
