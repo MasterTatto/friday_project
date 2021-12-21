@@ -2,19 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import './styles/_global.scss'
-import App from './App';
+import App from './n1-main/m1-ui/App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, HashRouter} from 'react-router-dom';
-import {store} from "./redux/store";
-import {Provider} from 'react-redux';
 
 ReactDOM.render(
     <React.StrictMode>
-        <HashRouter>
-            <Provider store={store}>
-                <App/>
-            </Provider>
-        </HashRouter>
+        <App/>
     </React.StrictMode>,
     document.getElementById('root')
 );

@@ -1,0 +1,16 @@
+.box {
+  display: flex;
+  justify-content: space-evenly;
+
+  span {
+    border-radius: 5px;
+    padding: 5px 10px;
+    background: #0f52ba;
+    cursor: pointer;
+    transition: .5s all ease-out;
+
+    &:hover {
+      background: #7b51b3;
+    }
+  }
+}

@@ -1,1 +1,0 @@
-export const combineCss = (...classNames: string[]) => classNames.filter((style) => style?.length > 0).join(' ')
