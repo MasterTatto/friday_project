@@ -16,9 +16,6 @@ const User = () => {
 
     return (
         <div className={styles.profile}>
-            <div className={styles.intro}>
-                <h1>Profile</h1>
-            </div>
             <div className={styles.profileInfo}>
                 <div>
                     <img className={styles.avatar} src={avatar} alt=""/>
@@ -26,6 +23,7 @@ const User = () => {
 
                 <div>
                     <EditableSpan value={userName} onChange={ChangeUserName}/>
+                    <p>Front-end developer</p>
                 </div>
             </div>
 

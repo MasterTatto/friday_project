@@ -2,15 +2,28 @@ import React, {useEffect, useState} from 'react';
 import styles from './styles.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../../m2-bll/store";
-import {CardType, deleteCardPackTC, GetCardsType, setChangeSortCards} from "../../profileReducer";
+import {
+    GetCardsType, getItemsCardType, setChangeSortCardItems,
+    setChangeSortCards,
+} from "../../profileReducer";
+import {ModalTypeAction} from "../../../common/modal";
+import Headers from "./t1-tableHeader";
+import Rows from "./t2-TableRow";
 
 const header = ['Name', 'Cards', 'Last Update', 'Created by', 'Actions']
+const items = ['Question', 'Actions', 'Last Update', 'Grade']
 
-const Table = () => {
+const Table = ({setCardName}: any) => {
     const rows = useSelector<AppRootStateType, GetCardsType | null>((state) => state.profile.cards)
+    const rowsItems = useSelector<AppRootStateType, getItemsCardType | null>((state) => state.profile.cardItems)
     const sortCards = useSelector<AppRootStateType, number>((state) => state.profile.sortByCards)
     const profileID = useSelector<AppRootStateType, string>((state) => state.login.profileData._id)
     const [nameHeader, setNameHeader] = useState('')
+    const [type, setType] = useState<ModalTypeAction>('')
+    const [cardID, setCardID] = useState('')
+    const typeGetRequest = useSelector<AppRootStateType, string>((state) => state.profile.tableType)
+    const typeTableRequest = typeGetRequest === 'cards'
+
 
     useEffect(() => {
         const scrollContainer = document.querySelectorAll("#table");
@@ -35,65 +48,57 @@ const Table = () => {
 
     const changeSortCards = (name: string) => {
         const nameClick = name === 'Cards' ? 'cardsCount' : 'updated'
-        if (name === 'Cards' || name === 'Last Update') {
-            if (sortCards === 0) {
-                dispatch(setChangeSortCards(1, nameClick))
-            } else {
-                dispatch(setChangeSortCards(0, nameClick))
+        const nameClickItems = name === 'Last Update' ? 'updated' : 'grade'
+
+        if (typeTableRequest) {
+            if (name === 'Cards' || name === 'Last Update') {
+                if (sortCards === 0) {
+                    dispatch(setChangeSortCards(1, nameClick))
+                } else {
+                    dispatch(setChangeSortCards(0, nameClick))
+                }
             }
         }
+
+        if (!typeTableRequest) {
+            if (name === 'Grade' || name === 'Last Update') {
+                if (sortCards === 0) {
+                    dispatch(setChangeSortCardItems(1, nameClickItems))
+                } else {
+                    dispatch(setChangeSortCardItems(0, nameClickItems))
+                }
+            }
+        }
+
         setNameHeader(name)
     }
 
-    const changeStyleSortCard = ((nameHeader === 'Cards' && sortCards !== 0) && styles.activeCards) || ((nameHeader === 'Last Update' && sortCards !== 0) && styles.activeUpdate)
-    const deleteCardPack = (id: string) => dispatch(deleteCardPackTC(id))
+    const headerTable = (typeTableRequest ? header : items).map(headerGroup => {
+            return <Headers headerGroup={headerGroup} nameHeader={nameHeader} sortCards={sortCards}
+                            changeSortCards={changeSortCards} key={headerGroup}/>
+        }
+    )
+    const rowsTable = (typeTableRequest ? rows?.cardPacks : rowsItems?.cards)?.map((row: any) => {
+        return <Rows row={row} typeTableRequest={typeTableRequest}
+                     profileID={profileID}
+                     setCardID={setCardID} cardID={cardID}
+                     type={type} setType={setType}
+                     setCardName={setCardName}
+                     key={row._id}/>
+    })
 
     return (
-        <table className={styles.table}>
-            <thead className={styles.thead}>
+        <div className={styles.table}>
 
-            {header.map(headerGroup => (
-                <tr className={`${styles.tableHeader} ${changeStyleSortCard}`}
-                    key={headerGroup}
-                    onClick={() => changeSortCards(headerGroup)}>
-                    <th className={styles.column}>
-                        {headerGroup}
-                    </th>
-                </tr>
-            ))}
-            </thead>
+            <div className={styles.thead}>
+                {headerTable}
+            </div>
 
-            <tbody className={styles.rows}>
+            <div className={styles.rows}>
+                {rowsTable}
+            </div>
 
-            {rows?.cardPacks.map((row: CardType) => {
-
-                return (
-                    <tr className={styles.rowe} key={row._id}>
-                        <td className={styles.row}>
-
-                            <span className={styles.rowItem} id={'table'}>{row.name}</span>
-                            <span className={styles.rowItem} id={'table'}>{row.cardsCount}</span>
-                            <span className={styles.rowItem} id={'table'}>{row.updated.slice(0, 10)}</span>
-                            <span className={styles.rowItem} id={'table'}> {row.user_name}</span>
-
-                            <div className={`${styles.rowItem} ${styles.btnBox}`}>
-                                {profileID === row.user_id &&
-                                (<>
-                                    <span className={styles.btn} data-color
-                                          onClick={() => deleteCardPack(row._id)}>Delete</span>
-                                    <span className={styles.btn}>Edit</span>
-                                </>)
-                                }
-                                <span className={styles.btn}>Learn</span>
-                            </div>
-
-                        </td>
-                    </tr>
-                )
-            })}
-
-            </tbody>
-        </table>
+        </div>
     );
 };
 

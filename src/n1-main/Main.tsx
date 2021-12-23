@@ -13,6 +13,7 @@ export const Main = () => {
     useEffect(() => {
         dispatch(inAuthTC())
     }, [dispatch])
+
     return (
         <>
             <Header/>

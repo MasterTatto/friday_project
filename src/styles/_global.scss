@@ -58,12 +58,46 @@ body {
 
   ::-webkit-scrollbar {
     height: 5px;
-    width: 4px;
+    width: 6px;
     background: #ECECF9;
   }
 
   ::-webkit-scrollbar-thumb:horizontal {
     background: #8865c0;
     border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb:vertical {
+    background: #8865c0;
+    border-radius: 20px;
+  }
+
+  .MuiSlider-thumb {
+    width: 30px;
+    height: 30px;
+    top: 8px;
+    background: #8865c0;
+
+    &:before {
+      content: '';
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      background: #ECECF9;
+      border-radius: 50%;
+    }
+
+    &:active {
+      background: #0f52ba;
+    }
+  }
+
+  .MuiSlider-track {
+    height: 10px;
+    background: #8865c0;
+  }
+
+  .MuiSlider-rail {
+    height: 10px;
   }
 }

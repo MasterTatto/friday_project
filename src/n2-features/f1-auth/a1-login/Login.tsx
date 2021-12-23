@@ -29,7 +29,6 @@ export const Login = () => {
         },
         onSubmit: (values) => {
             dispatch(inLoginTC({email: values.email, password: values.password, rememberMe: values.rememberMe}))
-            // console.log(values)
         }
     })
 

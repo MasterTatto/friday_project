@@ -1,0 +1,146 @@
+@import "src/styles/mixin";
+
+
+.modal2 {
+  @include main_content;
+  max-height: content-box;
+  max-width: 450px;
+  background: #ECECF9;
+  display: flex;
+  padding: 20px;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.pBox2 {
+  width: 100%;
+  overflow-x: hidden;
+  border-bottom: 2px solid #7f7c7f;
+  padding-bottom: 10px;
+}
+
+.question2,
+.answer2 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  p {
+    margin-left: 10px;
+    font-size: 20px;
+    line-height: 1.8em;
+  }
+}
+
+.answer2 {
+  margin-top: 20px;
+}
+
+.checkBoxBox2 {
+  display: flex;
+  flex-direction: column;
+  max-height: 220px;
+  height: 100%;
+  margin-top: 20px;
+}
+
+.boxInputCheck2 {
+  @include checkbox_styles;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 15px;
+  align-items: flex-start;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.checkbox2 {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-left: 20px;
+    font-family: SF UI Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 24px;
+    color: #2D2E46;
+  }
+}
+
+
+.p {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.4em;
+  letter-spacing: .1em;
+
+  &:nth-child(2) {
+    margin-top: 20px;
+  }
+}
+
+.hidden2 {
+  display: none;
+}
+
+.btn2 {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+//
+.box {
+  background: rgba(51, 51, 51, 0.81);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.modal {
+  @include main_content;
+  max-height: 300px;
+  max-width: 450px;
+  background: #ECECF9;
+  display: flex;
+  padding: 20px;
+  justify-content: space-around;
+
+}
+
+.addedItemsBox {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.p {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.4em;
+  letter-spacing: .1em;
+
+  &:nth-child(2) {
+    margin-top: 20px;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}

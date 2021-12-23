@@ -2,8 +2,6 @@
   max-width: 1000px;
   width: 100%;
   box-shadow: 0 4px 14px rgba(45, 46, 70, 0.15);
-  height: 500px;
-
 }
 
 .thead {
@@ -95,6 +93,7 @@
   align-items: center;
   padding: 10px;
   flex-wrap: nowrap;
+  justify-content: center;
 
   &:nth-child(odd) {
     background: #fff;

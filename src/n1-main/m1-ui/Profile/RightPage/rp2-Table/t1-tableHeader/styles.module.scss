@@ -2,8 +2,7 @@
   max-width: 1000px;
   width: 100%;
   box-shadow: 0 4px 14px rgba(45, 46, 70, 0.15);
-  height: 500px;
-
+  //height: 500px;
 }
 
 .thead {
@@ -58,6 +57,45 @@
   }
 }
 
+.tableHeader2 {
+  height: 50px;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+
+  &:nth-child(4) {
+    position: relative;
+
+    &:before {
+      content: '▲';
+      font-size: 15px;
+      position: absolute;
+      top: 13px;
+      left: 30%;
+      width: 1.4em;
+      height: 1.4em;
+      line-height: 1.3em;
+      cursor: pointer;
+    }
+  }
+
+  &:nth-child(3) {
+    position: relative;
+
+    &:before {
+      content: '▲';
+      font-size: 15px;
+      position: absolute;
+      top: 13px;
+      left: 53%;
+      width: 1.4em;
+      height: 1.4em;
+      line-height: 1.3em;
+      cursor: pointer;
+    }
+  }
+}
+
 //
 .activeCards {
   &:nth-child(2) {
@@ -72,6 +110,17 @@
 
 .activeUpdate {
   &:nth-child(3) {
+    position: relative;
+
+    &:before {
+      content: '▼';
+      top: 23px;
+    }
+  }
+}
+
+.activeGrade {
+  &:nth-child(4) {
     position: relative;
 
     &:before {

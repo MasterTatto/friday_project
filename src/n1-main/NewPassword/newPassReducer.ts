@@ -41,7 +41,6 @@ export const setPassword = (token: string, password: string, password2: string) 
             })
             .catch(err => {
                 dispatch(setIsLoading('error'))
-                // console.log(err.response.data.error)
             })
     }
 

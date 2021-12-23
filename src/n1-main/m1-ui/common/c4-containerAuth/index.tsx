@@ -4,7 +4,7 @@ import styles from './styles.module.scss'
 export interface LayoutProps {
     children: React.ReactNode
     className?: string
-    onClick?: (value: any) => void
+    onClick?: any
 }
 
 const ContainerAuth = (props: LayoutProps) => {

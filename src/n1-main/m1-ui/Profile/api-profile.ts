@@ -15,23 +15,57 @@ export const profileAPI = {
     getCards: (getParamsCards: getParamsType) => {
         return axiosInstance.get("cards/pack", {params: getParamsCards})
     },
-    addCardPack: (data: addCardPackType) => {
-        return axiosInstance.post("cards/pack", {cardsPack: data})
+    addNewPack: (data: getParamsNewPackType) => {
+        return axiosInstance.post("/cards/pack", data)
     },
     deleteCardPack: (id: string) => {
         return axiosInstance.delete(`cards/pack?id=${id}`)
+    },
+    updateCardPack: (data: getParamsNewPackType) => {
+        return axiosInstance.put(`cards/pack`, data)
     }
 };
 
-export type addCardPackType = {
-    name?: "no Name"
-    path?: "/def"
-    grade?: 0
-    shots?: 0
-    rating?: 0
-    deckCover?: "url or base64"
-    private?: false
-    type?: "pack"
+export const cardsApi = {
+    getCardItems: (getParamsCardsItemType: getParamsCardsItemType) => {
+        return axiosInstance.get('cards/card', {params: getParamsCardsItemType})
+    },
+    addedCardItem: (data: AddedCardItemType) => {
+        return axiosInstance.post('cards/card', data)
+    },
+    deleteCardItem: (id: string) => {
+        return axiosInstance.delete(`cards/card?id=${id}`)
+    }
+}
+
+export type getParamsNewPackType = {
+    cardsPack: cardsPackType
+}
+export type AddedCardItemType = {
+    card: {
+        cardsPack_id: string,
+        question?: string,
+        answer?: string,
+        grade?: number,
+        shots?: number,
+        rating?: number,
+        answerImg?: string,
+        questionImg?: string,
+        questionVideo?: string,
+        answerVideo?: string,
+        type?: string,
+    }
+}
+export type cardsPackType = {
+    name?: string
+    path?: string
+    grade?: number
+    shots?: number
+    rating?: number
+    deckCover?: string
+    private?: boolean
+    type?: string
+    _id?: string
 }
 
 export type getParamsType = {
@@ -41,7 +75,18 @@ export type getParamsType = {
     sortPacks?: number | string,
     page?: number,
     pageCount?: number,
-    user_id?: string
+    user_id?: string,
+}
+
+export type getParamsCardsItemType = {
+    cardAnswer?: string,
+    cardQuestion?: string,
+    cardsPack_id: string,
+    min?: number,
+    max?: number,
+    sortCards?: number | string,
+    page?: number,
+    pageCount?: number,
 }
 
 export type ProfileType = {
