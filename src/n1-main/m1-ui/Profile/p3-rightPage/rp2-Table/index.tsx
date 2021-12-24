@@ -2,26 +2,24 @@ import React, {useEffect, useState} from 'react';
 import styles from './styles.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../../m2-bll/store";
-import {
-    GetCardsType, getItemsCardType, setChangeSortCardItems,
-    setChangeSortCards,
-} from "../../profileReducer";
 import {ModalTypeAction} from "../../../common/modal";
 import Headers from "./t1-tableHeader";
 import Rows from "./t2-TableRow";
+import {setChangeSortCardItems, setChangeSortCards} from "../../p1-reducers/cardsReducer";
+import {GetCardsType, getItemsCardType} from "../../api-profile";
 
 const header = ['Name', 'Cards', 'Last Update', 'Created by', 'Actions']
 const items = ['Question', 'Actions', 'Last Update', 'Grade']
 
 const Table = ({setCardName}: any) => {
-    const rows = useSelector<AppRootStateType, GetCardsType | null>((state) => state.profile.cards)
-    const rowsItems = useSelector<AppRootStateType, getItemsCardType | null>((state) => state.profile.cardItems)
-    const sortCards = useSelector<AppRootStateType, number>((state) => state.profile.sortByCards)
+    const rows = useSelector<AppRootStateType, GetCardsType | null>((state) => state.profileCard.cards)
+    const rowsItems = useSelector<AppRootStateType, getItemsCardType | null>((state) => state.profileCardItem.cardItems)
+    const sortCards = useSelector<AppRootStateType, number>((state) => state.profileCard.sortByCards)
     const profileID = useSelector<AppRootStateType, string>((state) => state.login.profileData._id)
     const [nameHeader, setNameHeader] = useState('')
     const [type, setType] = useState<ModalTypeAction>('')
     const [cardID, setCardID] = useState('')
-    const typeGetRequest = useSelector<AppRootStateType, string>((state) => state.profile.tableType)
+    const typeGetRequest = useSelector<AppRootStateType, string>((state) => state.profileCardItem.tableType)
     const typeTableRequest = typeGetRequest === 'cards'
 
 
@@ -78,6 +76,7 @@ const Table = ({setCardName}: any) => {
                             changeSortCards={changeSortCards} key={headerGroup}/>
         }
     )
+
     const rowsTable = (typeTableRequest ? rows?.cardPacks : rowsItems?.cards)?.map((row: any) => {
         return <Rows row={row} typeTableRequest={typeTableRequest}
                      profileID={profileID}

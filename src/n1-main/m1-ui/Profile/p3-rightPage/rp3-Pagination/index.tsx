@@ -3,18 +3,18 @@ import styles from './styles.module.scss'
 import {Pagination} from "@material-ui/lab";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../../m2-bll/store";
-import {getItemsCardType, setPage, setRowsPerPage} from "../../profileReducer";
 import {FormControl, MenuItem, Select} from "@material-ui/core";
+import { setPage, setRowsPerPage} from "../../p1-reducers/cardsReducer";
 
 const Paginate = () => {
 
     const dispatch = useDispatch()
-    const cardPacksTotalCount = useSelector<AppRootStateType, number | undefined>((state) => state.profile.cards?.cardPacksTotalCount)
-    const page = useSelector<AppRootStateType, number>((state) => state.profile.page)
-    const rowsPerPage = useSelector<AppRootStateType, number>((state) => state.profile.rowsPerPage)
-    const typeGetRequest = useSelector<AppRootStateType, string>((state) => state.profile.tableType)
+    const cardPacksTotalCount = useSelector<AppRootStateType, number | undefined>((state) => state.profileCard.cards?.cardPacksTotalCount)
+    const page = useSelector<AppRootStateType, number>((state) => state.profileCard.page)
+    const rowsPerPage = useSelector<AppRootStateType, number>((state) => state.profileCard.rowsPerPage)
+    const typeGetRequest = useSelector<AppRootStateType, string>((state) => state.profileCardItem.tableType)
     const typeTableRequest = typeGetRequest === 'cards'
-    const rowsItems = useSelector<AppRootStateType, number | undefined>((state) => state.profile.cardItems?.cardsTotalCount)
+    const rowsItems = useSelector<AppRootStateType, number | undefined>((state) => state.profileCardItem.cardItems?.cardsTotalCount)
     //@ts-ignore
     const pageCount = Math.ceil(typeTableRequest ? cardPacksTotalCount / rowsPerPage : rowsItems / rowsPerPage)
 

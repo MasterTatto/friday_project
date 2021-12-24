@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 import {authApi} from "./apiApp";
-import {changeUserNameAC} from "./Profile/profileReducer";
 import {setProfileData} from "../../n2-features/f1-auth/a1-login/loginReducer";
+import {changeUserNameAC} from "./Profile/p1-reducers/profileReducer";
 
 const initialState = {
     isLoading: 'loading' as IsLoadingType,

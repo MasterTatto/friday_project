@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from './../styles.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../../m2-bll/store";
-import {setChangeSortCardsById} from "../../profileReducer";
+import {setChangeSortCardsById} from "../../p1-reducers/cardsReducer";
 
 const SortTableById = () => {
     const userId = useSelector<AppRootStateType, string>(state => state.login.profileData._id)

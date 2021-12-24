@@ -1,7 +1,7 @@
 import {inLoginType, loginApi} from "./api";
 import {Dispatch} from "redux";
 import {SetInAuth, setIsLoading} from "../../../n1-main/m1-ui/appReducer";
-import {changeUserNameAC} from "../../../n1-main/m1-ui/Profile/profileReducer";
+import {changeUserNameAC} from "../../../n1-main/m1-ui/Profile/p1-reducers/profileReducer";
 
 const initialState = {
     error: '',

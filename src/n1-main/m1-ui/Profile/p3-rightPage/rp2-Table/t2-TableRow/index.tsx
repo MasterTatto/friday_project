@@ -1,17 +1,13 @@
 import React, {useState} from 'react';
 import styles from './styles.module.scss'
 import {useDispatch} from "react-redux";
-import {
-    deleteCardItemTC,
-    deleteCardPackTC,
-    setCardIDAC, setGradeItemTC,
-    updateCardItemTC,
-    updateCardPackTC
-} from "../../../profileReducer";
 import Rating from '@material-ui/lab/Rating';
 import Modal from "../../../../common/modal";
+import {deleteCardPackTC, updateCardPackTC} from "../../../p1-reducers/cardsReducer";
+import {deleteCardItemTC, updateCardItemTC} from "../../../p1-reducers/cardItemsReducer";
+import {setCardIDAC, setGradeItemTC} from "../../../p1-reducers/profileReducer";
 
-const Rows = ({row, typeTableRequest, profileID, setCardID, setCardName, setType, type, cardID, test}: any) => {
+const Rows = ({row, typeTableRequest, profileID, setCardName, setType, type}: any) => {
     const dispatch = useDispatch()
 
     const [openModal, setOpenModal] = useState(false)
@@ -33,7 +29,7 @@ const Rows = ({row, typeTableRequest, profileID, setCardID, setCardName, setType
         setCardName(name)
     }
     const setGrade = (rating: number, id: string) => dispatch(setGradeItemTC(rating, id))
-    console.log(row)
+
     return <div className={styles.rowe} key={row._id}>
 
         <Modal type={type} setType={setType} setOpenModal={setOpenModal} openModal={openModal}

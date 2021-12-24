@@ -7,12 +7,12 @@ import SuperCheckbox from "../c3-SuperCheckbox/SuperCheckbox";
 
 export type ModalTypeAction = 'added' | 'delete' | 'edit' | '' | 'addedItem' | 'removeItem' | 'showAnswer' | 'answer' | 'updateItem'
 
-type ModalType = {
-    openModal: boolean;
-    setOpenModal: (bool: boolean) => void;
-    setActionTC: (value?: string, value2?: string) => void;
-    type: ModalTypeAction
-}
+// type ModalType = {
+//     openModal: boolean;
+//     setOpenModal: (bool: boolean) => void;
+//     setActionTC: (value?: string, value2?: string) => void;
+//     type: ModalTypeAction
+// }
 
 const Modal = ({openModal, setOpenModal, setActionTC, type, question, answer, setType}: any) => {
     const [value, setValue] = useState()

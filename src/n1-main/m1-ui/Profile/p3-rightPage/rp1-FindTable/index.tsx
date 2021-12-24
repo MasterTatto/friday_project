@@ -2,11 +2,13 @@ import React, {ChangeEvent, useState} from 'react';
 import styles from './styles.module.scss'
 import {TextField} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-import {addCardPack, addedCardItemTC, changePackName, changeTypeTable, setCardIDAC} from "../../profileReducer";
 import Modal from "../../../common/modal";
 import {ReactComponent as AddedCard} from "../../../../../assets/added.svg";
 import {ReactComponent as Arrow} from "../../../../../assets/arrow.svg";
 import {AppRootStateType} from "../../../../m2-bll/store";
+import {addCardPack, changePackName} from "../../p1-reducers/cardsReducer";
+import {addedCardItemTC, changeTypeTable} from "../../p1-reducers/cardItemsReducer";
+import {setCardIDAC} from "../../p1-reducers/profileReducer";
 
 const FindTable = ({cardName}: any) => {
     const [openModal, setOpenModal] = useState(false)
@@ -20,9 +22,9 @@ const FindTable = ({cardName}: any) => {
         dispatch(setCardIDAC(''))
     }
 
-    const typeGetRequest = useSelector<AppRootStateType, string>((state) => state.profile.tableType)
+    const typeGetRequest = useSelector<AppRootStateType, string>((state) => state.profileCardItem.tableType)
     const profileID = useSelector<AppRootStateType, string>((state) => state.login.profileData._id)
-    const userIDCard = useSelector<AppRootStateType, any>((state) => state.profile.cardItems)
+    const userIDCard = useSelector<AppRootStateType, any>((state) => state.profileCardItem.cardItems)
     const typeTableRequest = typeGetRequest === 'cards'
     const cardId = useSelector<AppRootStateType, string>(state => state.profile.cardId)
     const addNewPack = (value?: string, value2?: string) => {

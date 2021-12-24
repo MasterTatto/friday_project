@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import SuperDoubleRange from "../../../common/c7 -SuperDoubleRange/SuperDoubleRange";
 import {useDispatch} from "react-redux";
-import {setChangeCardsNumber} from "../../profileReducer";
 import styles from './../styles.module.scss'
+import {setChangeCardsNumber} from "../../p1-reducers/cardsReducer";
 
 const SortTable = () => {
     const dispatch = useDispatch()
