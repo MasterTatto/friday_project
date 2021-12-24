@@ -1,4 +1,4 @@
-import profileAPI, {AddedCardItemType, cardsApi, getParamsNewPackType, ProfileType} from "./api-profile";
+import profileAPI, {AddedCardItemType, cardsApi, getParamsNewPackType, ProfileType, ratingApi} from "./api-profile";
 import {setIsLoading} from "../appReducer";
 import {Dispatch} from "redux";
 import {AppRootStateType} from "../../m2-bll/store";
@@ -204,6 +204,28 @@ export const updateCardPackTC = (data: getParamsNewPackType) => async (dispatch:
         const res = await profileAPI.updateCardPack(data)
         dispatch(setIsLoading('idle'))
 
+    } catch (e) {
+        dispatch(setIsLoading('error'))
+    }
+}
+
+export const updateCardItemTC = (id: string, title: string) => async (dispatch: Dispatch) => {
+    dispatch(setIsLoading('loading'))
+
+    try {
+        const res = await cardsApi.updateCardItem(id, title)
+        dispatch(setIsLoading('idle'))
+    } catch (e) {
+        dispatch(setIsLoading('error'))
+    }
+}
+
+export const setGradeItemTC = (grade: number, id: string) => async (dispatch: Dispatch) => {
+    dispatch(setIsLoading('loading'))
+
+    try {
+        const res = await ratingApi.setRating(grade, id)
+        dispatch(setIsLoading('idle'))
     } catch (e) {
         dispatch(setIsLoading('error'))
     }

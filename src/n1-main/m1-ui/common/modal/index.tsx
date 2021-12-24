@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField/TextField';
 import Button from '@material-ui/core/Button';
 import SuperCheckbox from "../c3-SuperCheckbox/SuperCheckbox";
 
-export type ModalTypeAction = 'added' | 'delete' | 'edit' | '' | 'addedItem' | 'removeItem' | 'showAnswer' | 'answer'
+export type ModalTypeAction = 'added' | 'delete' | 'edit' | '' | 'addedItem' | 'removeItem' | 'showAnswer' | 'answer' | 'updateItem'
 
 type ModalType = {
     openModal: boolean;
@@ -27,10 +27,11 @@ const Modal = ({openModal, setOpenModal, setActionTC, type, question, answer, se
         (type === 'delete' && 'Are you sure ?') ||
         (type === 'edit' && 'Set a new name card') ||
         (type === 'addedItem' && 'Create your cards') ||
-        (type === 'removeItem' && 'Are you sure?')
+        (type === 'removeItem' && 'Are you sure?') ||
+        (type === 'updateItem' && 'Set a new question')
 
     const typeBoolean = type === 'showAnswer'
-    console.log(type)
+
     return (
         <ContainerAuth className={`${!openModal && styles.hidden} ${styles.box}`} onClick={targetContainerExit}>
 
@@ -96,7 +97,7 @@ const Modal = ({openModal, setOpenModal, setActionTC, type, question, answer, se
                     </div>
 
                     {
-                        (type === 'edit' || type === 'added') &&
+                        (type === 'edit' || type === 'added' || type === 'updateItem') &&
                         <TextField variant={'outlined'} label={'Name pack'} style={{width: '100%'}}
                                    onChange={(e: any) => setValue(e.currentTarget.value)}/>
                     }

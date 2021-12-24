@@ -35,6 +35,15 @@ export const cardsApi = {
     },
     deleteCardItem: (id: string) => {
         return axiosInstance.delete(`cards/card?id=${id}`)
+    },
+    updateCardItem: (id: string, question: string) => {
+        return axiosInstance.put('cards/card', {card: {_id: id, question: question}})
+    }
+}
+
+export const ratingApi = {
+    setRating: (grade: number, card_id: string) => {
+        return axiosInstance.put("cards/grade", {grade: grade, card_id: card_id})
     }
 }
 

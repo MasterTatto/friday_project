@@ -1,7 +1,13 @@
 import React, {useState} from 'react';
 import styles from './styles.module.scss'
 import {useDispatch} from "react-redux";
-import {deleteCardItemTC, deleteCardPackTC, setCardIDAC, updateCardPackTC} from "../../../profileReducer";
+import {
+    deleteCardItemTC,
+    deleteCardPackTC,
+    setCardIDAC, setGradeItemTC,
+    updateCardItemTC,
+    updateCardPackTC
+} from "../../../profileReducer";
 import Rating from '@material-ui/lab/Rating';
 import Modal from "../../../../common/modal";
 
@@ -10,10 +16,11 @@ const Rows = ({row, typeTableRequest, profileID, setCardID, setCardName, setType
 
     const [openModal, setOpenModal] = useState(false)
 
-    const updateCardPack = (value?: string) => {
+    const updateCardPack = (value: string) => {
         type === 'edit' && dispatch(updateCardPackTC({cardsPack: {_id: row._id, name: value}}))
         type === 'delete' && dispatch(deleteCardPackTC(row._id))
         type === 'removeItem' && dispatch(deleteCardItemTC(row._id))
+        type === 'updateItem' && dispatch(updateCardItemTC(row._id, value))
     }
 
     const actionCards = (value?: string) => {
@@ -25,6 +32,8 @@ const Rows = ({row, typeTableRequest, profileID, setCardID, setCardName, setType
         dispatch(setCardIDAC(id))
         setCardName(name)
     }
+    const setGrade = (rating: number, id: string) => dispatch(setGradeItemTC(rating, id))
+    console.log(row)
     return <div className={styles.rowe} key={row._id}>
 
         <Modal type={type} setType={setType} setOpenModal={setOpenModal} openModal={openModal}
@@ -43,7 +52,7 @@ const Rows = ({row, typeTableRequest, profileID, setCardID, setCardName, setType
 
                         <span className={styles.btn} onClick={actionCards.bind(null, 'removeItem')}
                               data-color>Delete</span>
-                        <span className={styles.btn}>Edit</span>
+                        <span className={styles.btn} onClick={actionCards.bind(null, 'updateItem')}>Edit</span>
 
                     </>)}
 
@@ -54,7 +63,8 @@ const Rows = ({row, typeTableRequest, profileID, setCardID, setCardName, setType
             <span className={styles.rowItem} id={'table'}>{row.updated.slice(0, 10)}</span>
             <span className={styles.rowItem}
                   id={'table'}> {typeTableRequest ? row.user_name :
-                <Rating name="read-only" value={row.grade} readOnly/>}</span>
+                <Rating name="half-rating" value={row.grade} precision={0.5}
+                        onChange={(e: any) => setGrade(e.currentTarget.value, row._id)}/>}</span>
 
             {typeTableRequest && <div className={`${styles.rowItem} ${styles.btnBox}`}>
 

@@ -34,7 +34,7 @@ const FindTable = ({cardName}: any) => {
             }
         }))
     }
-    console.log(userIDCard)
+
     return (
         <>
             {typeTableRequest ? <h1>Packs list</h1> : (
