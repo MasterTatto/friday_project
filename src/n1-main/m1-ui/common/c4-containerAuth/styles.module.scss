@@ -2,4 +2,5 @@
 
 .loginMain {
   @include page_login;
+  overflow: hidden;
 }

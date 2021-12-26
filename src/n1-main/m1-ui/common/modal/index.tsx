@@ -3,9 +3,21 @@ import styles from './styles.module.scss'
 import ContainerAuth from '../c4-containerAuth';
 import TextField from '@material-ui/core/TextField/TextField';
 import Button from '@material-ui/core/Button';
-import SuperCheckbox from "../c3-SuperCheckbox/SuperCheckbox";
+import Alert from "../alert";
+import Rating from '@material-ui/lab/Rating';
+import {setGradeItemTC} from "../../Profile/p1-reducers/profileReducer";
+import {useDispatch} from "react-redux";
 
-export type ModalTypeAction = 'added' | 'delete' | 'edit' | '' | 'addedItem' | 'removeItem' | 'showAnswer' | 'answer' | 'updateItem'
+export type ModalTypeAction =
+    'added'
+    | 'delete'
+    | 'edit'
+    | ''
+    | 'addedItem'
+    | 'removeItem'
+    | 'showAnswer'
+    | 'answer'
+    | 'updateItem'
 
 // type ModalType = {
 //     openModal: boolean;
@@ -13,13 +25,21 @@ export type ModalTypeAction = 'added' | 'delete' | 'edit' | '' | 'addedItem' | '
 //     setActionTC: (value?: string, value2?: string) => void;
 //     type: ModalTypeAction
 // }
+const answers = ['Did not know', 'Forgot', 'Confused', 'Knew the answer']
 
-const Modal = ({openModal, setOpenModal, setActionTC, type, question, answer, setType}: any) => {
-    const [value, setValue] = useState()
+const Modal = ({row, openModal, setOpenModal, setActionTC, type, question, answer, setType,}: any) => {
+    const dispatch = useDispatch()
+    const [value, setValue] = useState<any>()
     const [value2, setValue2] = useState()
+    const [rating, setRating] = useState<any>()
+    const [answerUser, setAnswerUser] = useState<string | undefined>('')
+    const [showAlert, setShowAlert] = useState(false)
+    const setGrade = (rating: number, id: string) => dispatch(setGradeItemTC(rating, id))
+
     const targetContainerExit = (e: any) => {
         if (e.target.closest('#modal') !== null) return
         setOpenModal(false)
+        setShowAlert(false)
     }
 
     const title =
@@ -31,10 +51,29 @@ const Modal = ({openModal, setOpenModal, setActionTC, type, question, answer, se
         (type === 'updateItem' && 'Set a new question')
 
     const typeBoolean = type === 'showAnswer'
+    const textButtonAction = !typeBoolean ? 'Show answer' : 'Done'
+    const disabledButton = typeBoolean && answerUser === ''
 
+
+    const alertConfig = (e: any) => {
+        setShowAlert(true)
+
+        setTimeout(() => {
+            setGrade(e, row._id)
+            setShowAlert(false)
+            setOpenModal(false)
+        }, 3500)
+    }
+
+    const actionButtonAction = (e: any) => {
+        if (!typeBoolean) setType('showAnswer')
+        if (typeBoolean) alertConfig(e)
+    }
+    console.log(rating)
+    console.log(type)
     return (
         <ContainerAuth className={`${!openModal && styles.hidden} ${styles.box}`} onClick={targetContainerExit}>
-
+            <Alert showAlert={showAlert} type={answerUser}/>
 
             {(type === 'answer' || type === 'showAnswer') && (
                 <div className={styles.modal2} id={'modal'}>
@@ -53,17 +92,32 @@ const Modal = ({openModal, setOpenModal, setActionTC, type, question, answer, se
 
                     {typeBoolean && (
                         <div className={styles.checkBoxBox2}>
-                            <h1>Rate yourself:</h1>
+                            <h1>Check yourself:</h1>
                             <div className={styles.boxInputCheck2}>
-                                <div className={styles.checkbox2}><SuperCheckbox/><span>Did not know </span></div>
-                                <div className={styles.checkbox2}><SuperCheckbox/><span>Forgot</span></div>
-                                <div className={styles.checkbox2}><SuperCheckbox/><span>Confused</span></div>
-                                <div className={styles.checkbox2}><SuperCheckbox/><span>Knew the answer</span></div>
-                            </div>
 
+                                {answers.map((el) => {
+                                    return <div key={el} className={styles.checkbox2}>
+                                        <input type="radio" name="answerUser"
+                                               disabled={showAlert}
+                                               onChange={setAnswerUser.bind(null, el)}/><span>{el}</span>
+                                    </div>
+                                })}
+
+                            </div>
+                            <div className={styles.rating}>
+                                <h1>Rate this question: </h1>
+                                {/**/}
+                                {/**/}
+                                <Rating
+                                    onChange={(e: any) => {
+                                        setRating(e.currentTarget.value)
+                                    }} value={row.grade}
+                                    name="half-rating" precision={1}/>
+                                {/*    */}
+                                {/*    */}
+                            </div>
                         </div>
-                    )
-                    }
+                    )}
 
                     <div className={styles.btn2}>
                         <Button style={{
@@ -73,8 +127,8 @@ const Modal = ({openModal, setOpenModal, setActionTC, type, question, answer, se
                             height: '40px',
                             width: '150px'
                         }}
-                                onClick={setType.bind(null, 'showAnswer')}
-                                variant="contained">{!typeBoolean ? 'Show answer' : 'Next'}</Button>
+                                onClick={actionButtonAction.bind(null, rating)}
+                                variant="contained" disabled={disabledButton}>{textButtonAction}</Button>
                         <Button style={{
                             borderRadius: '20px',
                             background: '#D7D8EF',

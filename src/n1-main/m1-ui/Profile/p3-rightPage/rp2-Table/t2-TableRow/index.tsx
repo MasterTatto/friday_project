@@ -9,7 +9,6 @@ import {setCardIDAC, setGradeItemTC} from "../../../p1-reducers/profileReducer";
 
 const Rows = ({row, typeTableRequest, profileID, setCardName, setType, type}: any) => {
     const dispatch = useDispatch()
-
     const [openModal, setOpenModal] = useState(false)
 
     const updateCardPack = (value: string) => {
@@ -28,13 +27,13 @@ const Rows = ({row, typeTableRequest, profileID, setCardName, setType, type}: an
         dispatch(setCardIDAC(id))
         setCardName(name)
     }
-    const setGrade = (rating: number, id: string) => dispatch(setGradeItemTC(rating, id))
 
     return <div className={styles.rowe} key={row._id}>
 
         <Modal type={type} setType={setType} setOpenModal={setOpenModal} openModal={openModal}
                setActionTC={updateCardPack}
                question={row.question} answer={row.answer}
+               row={row}
         />
 
         <div className={styles.row}>
@@ -59,8 +58,7 @@ const Rows = ({row, typeTableRequest, profileID, setCardName, setType, type}: an
             <span className={styles.rowItem} id={'table'}>{row.updated.slice(0, 10)}</span>
             <span className={styles.rowItem}
                   id={'table'}> {typeTableRequest ? row.user_name :
-                <Rating name="half-rating" value={row.grade} precision={0.5}
-                        onChange={(e: any) => setGrade(e.currentTarget.value, row._id)}/>}</span>
+                <Rating value={row.grade} readOnly/>}</span>
 
             {typeTableRequest && <div className={`${styles.rowItem} ${styles.btnBox}`}>
 

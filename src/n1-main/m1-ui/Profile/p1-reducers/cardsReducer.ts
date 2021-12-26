@@ -97,7 +97,6 @@ export const getCardsPack = (sortCards: number, sortName: string, min: number, m
             max,
             user_id
         })
-
         dispatch(setCards(res.data))
     } catch (e) {
         dispatch(setIsLoading('error'))

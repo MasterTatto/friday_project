@@ -37,7 +37,7 @@ export const Profile = () => {
 
     return (
         <ContainerAuth>
-            <div className={styles.main}>
+            <div className={styles.main} id={'profile'}>
                 <LeftPage/>
                 <RightPage/>
             </div>

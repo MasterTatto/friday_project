@@ -80,7 +80,6 @@ const Table = ({setCardName}: any) => {
     const rowsTable = (typeTableRequest ? rows?.cardPacks : rowsItems?.cards)?.map((row: any) => {
         return <Rows row={row} typeTableRequest={typeTableRequest}
                      profileID={profileID}
-                     setCardID={setCardID} cardID={cardID}
                      type={type} setType={setType}
                      setCardName={setCardName}
                      key={row._id}/>

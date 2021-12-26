@@ -1,0 +1,30 @@
+.alert {
+  padding: 10px 30px;
+  position: absolute;
+  top: -220px;
+  transition: .4s all ease-out;
+  border: 3px solid #eeeeee;
+  font-size: 1.25em;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.active {
+  top: 20px;
+}
+
+.a1 {
+  background: green;
+}
+
+.a2 {
+  background: steelblue;
+}
+
+.a3 {
+  background: orange;
+}
+
+.a4 {
+  background: red;
+}

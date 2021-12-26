@@ -51,20 +51,24 @@
   justify-content: space-between;
   margin-top: 15px;
   align-items: flex-start;
-  height: 100%;
+  height: 105px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  width: 410px;
 }
 
 .checkbox2 {
   display: flex;
   align-items: center;
+  width: 200px;
+  height: 50px;
 
   span {
     margin-left: 20px;
     font-family: SF UI Display;
     font-style: normal;
     font-weight: normal;
-    font-size: 26px;
+    font-size: 20px;
     line-height: 24px;
     color: #2D2E46;
   }
@@ -101,7 +105,8 @@
   width: 100vw;
   left: 0;
   top: 0;
-  z-index: 1;
+  z-index: 2;
+  backdrop-filter: blur(2px);
 }
 
 .modal {
@@ -112,7 +117,8 @@
   display: flex;
   padding: 20px;
   justify-content: space-around;
-
+  position: relative;
+  z-index: 3;
 }
 
 .addedItemsBox {
@@ -143,4 +149,13 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  width: 340px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
 }
